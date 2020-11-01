@@ -5,6 +5,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @category = Category.all
   end
 
   def new

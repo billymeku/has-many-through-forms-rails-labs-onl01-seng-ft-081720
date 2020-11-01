@@ -3,6 +3,13 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :post_categories
   has_many :comments
   has_many :users, through: :comments
-
-
+ 
+def categories_attributes=(cats_attrs)
+    cats_attrs.values.each do |cat_attr|
+      if cat_attr["name"].present?
+        category = Category.find_or_create_by(cat_attr)
+        self.categories << category
+      end
+    end
+  end
 end
